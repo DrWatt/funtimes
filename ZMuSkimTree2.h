@@ -21,7 +21,8 @@
 #include "vector"
 #include <TMultiGraph.h>
 
-
+const vector<int> z;
+  
 class ZMuSkimTree {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
@@ -547,6 +548,7 @@ public :
 
    TMultiGraph* mg;
 
+
    ZMuSkimTree(TTree *tree=0);
    virtual ~ZMuSkimTree();
    virtual Int_t    Cut(Long64_t entry);
@@ -560,13 +562,15 @@ public :
    virtual void     PhiWheelDist(short,short,short);
    virtual void     Scanner();
    virtual void     SkimmerNoDT();
-   virtual int      Finder(short,short,short);
+   virtual int      Finder(short,short,short, short a = 0, short bx =0);
    virtual void     InputScanner();
    virtual void     ScannerInv();
    virtual void     PhiDiff();
    virtual void     asd();
    virtual void     Skimmer1DT();
-   virtual void     Histofiller(vector<int>,vector<int>, vector<int>,string);
+   virtual void     Histofiller(vector<int>,vector<int>, vector<int>,string, short normalization = 0, vector<int> pstation = z,vector<int> psector= z, vector<int> pwheel= z, string ptype = "0");
+   virtual void     QualityCheck();
+   
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
